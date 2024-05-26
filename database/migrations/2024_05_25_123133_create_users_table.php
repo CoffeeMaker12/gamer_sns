@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('pr_body', 1000);
-            $table->string('icon_path', 50);
+            $table->string('pr_body', 1000)->nullable();
+            $table->string('icon_path', 50)->nullable();
             $table->timestamps();
         });
     }
