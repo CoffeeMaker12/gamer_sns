@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('board_id')->references('id')->on('boards')->onDelete('cascade');
-            $table->foreignId('board_comment_id')->nullable()->references('id')->on('board_comments')->onDelete('cascade');
+            $table->Integer('board_comment_id');
             $table->string('body');
             $table->timestamps();
         });
