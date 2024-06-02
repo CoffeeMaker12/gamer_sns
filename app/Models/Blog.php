@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Blog extends Model
 {
     use HasFactory;
@@ -12,7 +13,8 @@ class Blog extends Model
     protected $fillable = [
         'title',
         'body',
-        'user_id'
+        'user_id',
+        'category_id'
     ];
     
     use HasFactory;
@@ -22,6 +24,12 @@ class Blog extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    //「1対多」
+    public function blog_comments()
+    {
+        return $this->hasMany(BlogComment::class);
     }
     
     //「多対多」

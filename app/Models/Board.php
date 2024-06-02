@@ -27,4 +27,16 @@ class Board extends Model
     {
         return $this->hasMany(BoardComment::class);
     }
+    
+    //「多対多」
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+    
+    //「1対多」
+    public function board_type()
+    {
+        return $this->belongsTo(Boardtype::class);
+    }
 }
