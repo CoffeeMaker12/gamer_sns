@@ -17,6 +17,9 @@ class BoardCommentSeeder extends Seeder
     public function run()
     {
         DB::table('board_comments')->insert([
+                'user_id' => 1,
+                'board_id' => 1,
+                'board_comment_id' => 1,
                 'body' => '本文テスト',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),

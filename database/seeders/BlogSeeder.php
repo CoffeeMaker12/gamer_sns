@@ -17,6 +17,7 @@ class BlogSeeder extends Seeder
     public function run()
     {
         DB::table('blogs')->insert([
+                'user_id' => 1,
                 'title' => 'タイトルテスト',
                 'body' => '本文テスト',
                 'created_at' => new DateTime(),
