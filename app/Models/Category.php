@@ -8,4 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function blogs()
+    {
+        return $this->belongsToMany(Blog::class);
+    }
+    
+    public function boards()
+    {
+        return $this->belongsToMany(Board::class);
+    }
+    
+    public function Messages()
+    {
+        return $this->belongsToMany(Message::class);
+    }
+    
 }
