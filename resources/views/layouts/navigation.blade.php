@@ -18,13 +18,13 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('HOME') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
+                    <x-nav-link :href="route('chats')" :active="request()->routeIs('chats')">
                         {{ __('CHAT') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('blog')" :active="request()->routeIs('blog')">
+                    <x-nav-link :href="route('blogs')" :active="request()->routeIs('blogs')">
                         {{ __('BLOG') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('board')" :active="request()->routeIs('board')">
+                    <x-nav-link :href="route('boards')" :active="request()->routeIs('boards')">
                         {{ __('BOARD') }}
                     </x-nav-link>
                     <x-nav-link :href="route('finduser')" :active="request()->routeIs('finduser')">

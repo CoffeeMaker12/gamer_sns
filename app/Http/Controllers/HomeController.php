@@ -14,19 +14,19 @@ class HomeController extends Controller
         return view('home.index');
     }
     
-    public function chat()
+    public function chats()
     {
-        return view('chat.index');
+        return view('chats.index');
     }
     
-    public function blog()
+    public function blogs()
     {
-        return view('blog.index');
+        return view('blogs.index');
     }
     
-    public function board()
+    public function boards()
     {
-        return view('board.index');
+        return view('boards.index');
     }
     
     public function finduser()

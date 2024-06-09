@@ -11,7 +11,7 @@ class Board extends Model
         'title',
         'body',
         'user_id',
-        'boardtype_id'
+        'boardtype_id',
     ];
     
     use HasFactory;
