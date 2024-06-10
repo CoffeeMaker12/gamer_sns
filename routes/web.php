@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,7 @@ Route::get('/dashboard', function () {
 Route::controller(HomeController::class)->middleware(['auth'])->group(function(){
     Route::get('/', 'home')->name('home');
     Route::get('/chats', 'chats')->name('chats');
-    Route::get('/blogs/home', 'blogs')->name('blogs');
+    //Route::get('/blogs', 'blogs')->name('blogs');
     Route::get('/boards', 'boards')->name('boards');
     Route::get('/finduser', 'finduser')->name('finduser');
     Route::get('/mypage', 'mypage')->name('mypage');
@@ -38,7 +39,7 @@ Route::get('/chats/{user}', [ChatController::class, 'openChat'])->middleware("au
 Route::post('/chats', [ChatController::class, 'sendMessage'])->middleware("auth");
 
 Route::controller(BlogController::class)->middleware(['auth'])->group(function(){
-    Route::get('/blogs', 'index')->name('index');
+    Route::get('/blogs', 'index')->name('blogs');
     Route::post('/blogs', 'store')->name('store');
     Route::get('/blogs/create', 'create')->name('create');
     Route::get('/blogs/{blog}', 'show')->name('show');

@@ -29,4 +29,9 @@ class Category extends Model
         return $this->belongsToMany(Message::class);
     }
     
+    public function getBlogByCategory(int $limit_count = 5)
+    {
+         return $this->blogs()->with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
 }
