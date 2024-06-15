@@ -25,11 +25,15 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 CategorySeeder::class,
                 BoardtypeSeeder::class,
-                //MessageSeeder::class,
                 BoardSeeder::class,
                 BoardCommentSeeder::class,
                 BlogSeeder::class,
-                BlogCommentSeeder::class
+                BlogCommentSeeder::class,
+                BlogCategorySeeder::class,
+                ChatroomSeeder::class,
+                MessageSeeder::class,
+                UserChatroomSeeder::class,
+                CategoryChatroomSeeder::class,
         ]);
     }
 }

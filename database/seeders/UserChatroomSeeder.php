@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
-class MessageSeeder extends Seeder
+class UserChatroomSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,9 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('messages')->insert([
+        DB::table('user_chatrooms')->insert([
                 'user_id' => 1,
                 'chatroom_id' => 1,
-                'body' => 'テスト',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);

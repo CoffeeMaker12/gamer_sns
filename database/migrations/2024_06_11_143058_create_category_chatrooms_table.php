@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chats', function (Blueprint $table) {
+        Schema::create('category_chatrooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('owner_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('guest_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreignId('chatroom_id')->references('id')->on('chatrooms')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chats');
+        Schema::dropIfExists('category_chatrooms');
     }
 };
