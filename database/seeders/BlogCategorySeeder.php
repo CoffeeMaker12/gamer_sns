@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
-class MessageSeeder extends Seeder
+class BlogCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,16 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('messages')->insert([
-                'user_id' => 1,
-                'chatroom_id' => 1,
-                'body' => 'テスト',
+        DB::table('blog_categories')->insert([
+                'blog_id' => 1,
+                'category_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);
+         
+        DB::table('blog_categories')->insert([
+                'blog_id' => 1,
+                'category_id' => 2,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);

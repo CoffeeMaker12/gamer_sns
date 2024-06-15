@@ -14,10 +14,18 @@ class Category extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function blogs()
-    {
-        return $this->belongsToMany(Blog::class);
+    public function blogs() 
+    { 
+        return $this->belongsToMany(Blog::class, 'blog_categories', 'category_id', 'blog_id'); 
     }
+    
+    //「1対多」
+    /*
+    public function blog_categories()
+    {
+        return $this->hasMany(BlogCategory::class);
+    }
+    */
     
     public function boards()
     {

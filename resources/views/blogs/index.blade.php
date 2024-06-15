@@ -10,7 +10,10 @@
                 <h2 class='title'>
                     <a href="/blogs/{{ $blog->id }}">{{ $blog->title }}</a>
                 </h2>
-                <!-- <a href="/categories/{/{ $blog->category->id }}">{/{ $blog->category->name }}</a> -->
+                
+                @foreach ($blog->categories as $blogCategory)
+                    <a href="/categories/{{ $blogCategory->id }}">{{ $blogCategory->name }}</a>
+                @endforeach
                 <p class='body'>{{ $blog->body }}</p>
             </div>
             @if (Auth::user()->id == $blog->user_id)

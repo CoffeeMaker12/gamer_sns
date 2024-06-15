@@ -33,11 +33,18 @@ class Blog extends Model
         return $this->hasMany(BlogComment::class);
     }
     
-    //「多対多」
     public function categories()
-    {
-        return $this->belongsToMany(Category::class);
+    { 
+        return $this->belongsToMany(Category::class, 'blog_categories', 'blog_id', 'category_id');
     }
+    
+    //「1対多」
+    /*
+    public function blog_categories()
+    {
+        return $this->hasMany(BlogCategory::class);
+    }
+    */
     
     public function getByLimit(int $limit_count = 10)
     {
