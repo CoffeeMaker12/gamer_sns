@@ -27,6 +27,14 @@ class UserSeeder extends Seeder
         ]);
         
         DB::table('users')->insert([
+            'name' => 'test2',
+            'email' => 'test2@mail.com',
+            'password' => Hash::make('testtest'),
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
+        
+        DB::table('users')->insert([
             'name' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
             'password' => Hash::make('password'),

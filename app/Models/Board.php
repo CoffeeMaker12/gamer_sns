@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Board extends Model
@@ -32,12 +33,25 @@ class Board extends Model
     //「多対多」
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'board_categories', 'board_id', 'category_id');
     }
     
     //「1対多」
-    public function board_type()
+    public function boardtype()
     {
         return $this->belongsTo(Boardtype::class);
+    }
+    
+    public function getByLimit(int $limit_count = 10)
+    {
+        // updated_atで降順に並べたあと、limitで件数制限をかける
+        return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
+    }
+    
+    public function getPaginateByLimit(int $limit_count = 5)
+    {
+        // updated_atで降順に並べたあと、limitで件数制限をかける
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        //return $this::with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }

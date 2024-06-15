@@ -15,7 +15,6 @@ class Blog extends Model
         'title',
         'body',
         'user_id',
-        'category_id'
     ];
     
     use HasFactory;
