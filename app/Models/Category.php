@@ -29,15 +29,15 @@ class Category extends Model
     
     public function boards()
     {
-        return $this->belongsToMany(Board::class);
+        return $this->belongsToMany(Board::class, 'board_categories', 'category_id', 'board_id');
     }
     
-    public function Messages()
-    {
-        return $this->belongsToMany(Message::class);
+    public function chatrooms() 
+    { 
+        return $this->belongsToMany(Chatroom::class, 'category_chatrooms', 'category_id', 'chatroom_id'); 
     }
     
-    public function getBlogByCategory(int $limit_count = 5)
+    public function getByBlogCategory(int $limit_count = 5)
     {
          return $this->blogs()->with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }

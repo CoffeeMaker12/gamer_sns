@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +49,7 @@ Route::controller(BlogController::class)->middleware(['auth'])->group(function()
     Route::get('/blogs/{blog}/edit', 'edit')->name('edit');
 });
 
-Route::get('/categories/{category}', [CategoryController::class,'index'])->middleware("auth");
+Route::get('/categories/blog/{category}', [CategoryController::class,'blogIndex'])->middleware("auth");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

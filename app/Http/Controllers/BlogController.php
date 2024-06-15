@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\BlogCategory;
 
 class BlogController extends Controller
 {
@@ -25,11 +26,14 @@ class BlogController extends Controller
 	    return view('blogs.create')->with(['categories' => $category->get()]);
 	}
 	
-	public function store(BlogRequest $request, Blog $blog)
+	public function store(BlogRequest $request, Blog $blog, BlogCategory $blogCategory)
 	{
 	    $input = $request['blog'];
+	    $input2 = $request['blog_category'];
 	    $blog->user_id = \Auth::id();
 	    $blog->fill($input)->save();
+	    $blogCategory->blog_id = $blog->id;
+	    $blogCategory->fill($input2)->save();
 	    return redirect('/blogs/' . $blog->id);
 	}
 	

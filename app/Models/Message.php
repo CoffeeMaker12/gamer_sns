@@ -15,9 +15,9 @@ class Message extends Model
         return $this->belongsTo(User::class);
     }
     
-    //「多対多」
-    public function categories()
+    //「1対多」の関係なので単数系
+    public function chatroom()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Chatroom::class);
     }
 }

@@ -6,7 +6,9 @@
     <h1 class="title">
         {{ $blog->title }}
     </h1>
-    <!-- <a href="/categories/{/{ $blog->category->id }}">{/{ $blog->category->name }}</a> -->
+    @foreach ($blog->categories as $blogCategory)
+        <a href="/categories/blog/{{ $blogCategory->id }}">{{ $blogCategory->name }}</a>
+    @endforeach
     <div class="content">
         <div class="content__blog">
             <h3>本文</h3>

@@ -3,12 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class UserChatroom extends Model
+
+class BlogCategory extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
-        'user_id',
+        'category_id',
         'chatroom_id'
     ];
     
@@ -16,14 +20,14 @@ class UserChatroom extends Model
     use SoftDeletes;
     
     //「1対多」の関係なので単数系
-    public function user()
-    {
-        return $this->belongsTo(user::class);
-    }
-    
-    //「1対多」
     public function chatroom()
     {
         return $this->belongsTo(Chatroom::class);
+    }
+    
+    //「1対多」
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
