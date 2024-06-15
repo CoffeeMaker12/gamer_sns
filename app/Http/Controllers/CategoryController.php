@@ -14,4 +14,10 @@ class CategoryController extends Controller
         //return view('categories.blog')->with(['blogs' => $blog->categories->getByBlogCategory()]);
         return view('categories.blog')->with(['blogs' => $category->getByBlogCategory()]);
     }
+    
+    public function boardIndex(Category $category)
+    {
+        //return view('categories.blog')->with(['blogs' => $blog->categories->getByBlogCategory()]);
+        return view('categories.board')->with(['boards' => $category->getByBoardCategory()]);
+    }
 }

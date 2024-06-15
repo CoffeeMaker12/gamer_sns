@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BoardController;
+use App\Http\Controllers\BoardtypeController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +33,7 @@ Route::controller(HomeController::class)->middleware(['auth'])->group(function()
     Route::get('/', 'home')->name('home');
     Route::get('/chats', 'chats')->name('chats');
     //Route::get('/blogs', 'blogs')->name('blogs');
-    Route::get('/boards', 'boards')->name('boards');
+    //Route::get('/boards', 'boards')->name('boards');
     Route::get('/finduser', 'finduser')->name('finduser');
     Route::get('/mypage', 'mypage')->name('mypage');
 });
@@ -49,7 +51,20 @@ Route::controller(BlogController::class)->middleware(['auth'])->group(function()
     Route::get('/blogs/{blog}/edit', 'edit')->name('edit');
 });
 
+Route::controller(BoardController::class)->middleware(['auth'])->group(function(){
+    Route::get('/boards', 'index')->name('boards');
+    Route::post('/boards', 'store')->name('store');
+    Route::get('/boards/create', 'create')->name('create');
+    Route::get('/boards/{board}', 'show')->name('show');
+    Route::put('/boards/{board}', 'update')->name('update');
+    Route::delete('/boards/{board}', 'delete')->name('delete');
+    Route::get('/boards/{board}/edit', 'edit')->name('edit');
+});
+
+Route::get('/boards/type/{boardtype}', [BoardtypeController::class,'index'])->middleware("auth");
+
 Route::get('/categories/blog/{category}', [CategoryController::class,'blogIndex'])->middleware("auth");
+Route::get('/categories/board/{category}', [CategoryController::class,'boardIndex'])->middleware("auth");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

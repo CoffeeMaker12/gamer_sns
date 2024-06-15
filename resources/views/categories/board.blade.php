@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        BOARD
+        CATEGORY
     </x-slot>
-    <h1>Board Test</h1>
+    <h1>Board Category Test</h1>
     <a href='/boards/create'>create</a>
     <div class='boards'>
         @foreach ($boards as $board)

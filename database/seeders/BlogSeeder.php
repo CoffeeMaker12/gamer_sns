@@ -23,5 +23,13 @@ class BlogSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
+        
+        DB::table('blogs')->insert([
+                'user_id' => 2,
+                'title' => 'こんにちは',
+                'body' => '今日はいい天気でした',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);
     }
 }

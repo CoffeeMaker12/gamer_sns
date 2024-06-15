@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 BoardtypeSeeder::class,
                 BoardSeeder::class,
                 BoardCommentSeeder::class,
+                BoardCategorySeeder::class,
                 BlogSeeder::class,
                 BlogCommentSeeder::class,
                 BlogCategorySeeder::class,

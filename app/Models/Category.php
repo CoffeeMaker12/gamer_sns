@@ -42,4 +42,9 @@ class Category extends Model
          return $this->blogs()->with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
+    public function getByBoardCategory(int $limit_count = 5)
+    {
+         return $this->boards()->with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
 }

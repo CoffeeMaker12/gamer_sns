@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('boardtype_id')->references('id')->on('boardtypes')->onDelete('cascade');
             $table->string('title', 50);
-            $table->string('body');
+            $table->string('body', 4000);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

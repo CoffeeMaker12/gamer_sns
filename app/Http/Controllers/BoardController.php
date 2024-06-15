@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\BoardRequest;
 use App\Models\Board;
 use App\Models\Category;
 use App\Models\BoardCategory;
@@ -21,9 +22,9 @@ class BoardController extends Controller
 	    return view('boards.show')->with(['board' => $board]);
 	}
 	
-	public function create(Category $category)
+	public function create(Category $category, Boardtype $boardtype)
 	{
-	    return view('boards.create')->with(['categories' => $category->get()]);
+	    return view('boards.create')->with(['categories' => $category->get(), 'boardtypes' => $boardtype->get()]);
 	}
 	
 	public function store(BoardRequest $request, Board $board, BoardCategory $boardCategory)

@@ -13,4 +13,9 @@ class Boardtype extends Model
     {
         return $this->hasMany(Board::class);
     }
+    
+    public function getByBoardtype(int $limit_count = 5)
+    {
+         return $this->boards()->with('boardtype')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 }

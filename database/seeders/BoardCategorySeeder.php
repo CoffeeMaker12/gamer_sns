@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
-class BoardSeeder extends Seeder
+class BoardCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,20 +16,23 @@ class BoardSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('boards')->insert([
-                'user_id' => 1,
-                'boardtype_id' => 1,
-                'title' => 'タイトルテスト',
-                'body' => '本文テスト',
+        DB::table('board_categories')->insert([
+                'board_id' => 1,
+                'category_id' => 1,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
          
-         DB::table('boards')->insert([
-                'user_id' => 2,
-                'boardtype_id' => 2,
-                'title' => 'このキャラのコンボについて',
-                'body' => '基本的なコンボのやり方を教えてください',
+        DB::table('board_categories')->insert([
+                'board_id' => 1,
+                'category_id' => 2,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);
+         
+        DB::table('board_categories')->insert([
+                'board_id' => 2,
+                'category_id' => 3,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
