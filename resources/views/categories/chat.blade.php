@@ -1,9 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        CHAT
+        CATEGORY
     </x-slot>
-    <h1>Chat Test</h1>
-        <!-- 招待制 自分のidを書いて入るみたいな -->
+    <h1>Chat Category Test</h1>
     <a href='/chats/create'>create</a>
     <div class='chatrooms'>
         @foreach ($chatrooms as $chatroom)

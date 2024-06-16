@@ -1,12 +1,12 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Library\Chat;
 use App\Models\Room;
 use App\Models\Message;
 use App\Models\User;
 use App\Events\MessageSent;
-
-namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 

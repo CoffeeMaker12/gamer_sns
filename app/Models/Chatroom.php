@@ -3,11 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Chatroom extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
+    protected $fillable = [
+        'owner_id',
+        'name',
+    ];
     
     public function owner() 
     { 
@@ -28,5 +35,12 @@ class Chatroom extends Model
     public function categories() 
     { 
         return $this->belongsToMany(Category::class, 'category_chatrooms', 'chatroom_id', 'category_id'); 
+    }
+    
+    public function getPaginateByLimit(int $limit_count = 5)
+    {
+        // updated_atで降順に並べたあと、limitで件数制限をかける
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        //return $this::with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }

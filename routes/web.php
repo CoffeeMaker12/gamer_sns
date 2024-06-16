@@ -31,15 +31,19 @@ Route::get('/dashboard', function () {
 
 Route::controller(HomeController::class)->middleware(['auth'])->group(function(){
     Route::get('/', 'home')->name('home');
-    Route::get('/chats', 'chats')->name('chats');
+    //Route::get('/chats', 'chats')->name('chats');
     //Route::get('/blogs', 'blogs')->name('blogs');
     //Route::get('/boards', 'boards')->name('boards');
     Route::get('/finduser', 'finduser')->name('finduser');
     Route::get('/mypage', 'mypage')->name('mypage');
 });
 
-Route::get('/chats/{user}', [ChatController::class, 'openChat'])->middleware("auth");
-Route::post('/chats', [ChatController::class, 'sendMessage'])->middleware("auth");
+Route::controller(ChatroomController::class)->middleware(['auth'])->group(function(){
+    Route::get('/chats', 'index')->name('chats');
+    Route::get('/chats/create', 'create')->name('create');
+    Route::get('/chats/{chatroom}', 'show')->name('show');
+    Route::post('/chats', 'sendMessage')->name('sendMessage');
+});
 
 Route::controller(BlogController::class)->middleware(['auth'])->group(function(){
     Route::get('/blogs', 'index')->name('blogs');
