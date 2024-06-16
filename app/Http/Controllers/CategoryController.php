@@ -9,6 +9,11 @@ use App\Models\BlogCategory;
 
 class CategoryController extends Controller
 {
+    public function chatIndex(Category $category)
+    {
+        return view('categories.chat')->with(['chatrooms' => $category->getByChatCategory()]);
+    }
+    
     public function blogIndex(Category $category)
     {
         //return view('categories.blog')->with(['blogs' => $blog->categories->getByBlogCategory()]);
@@ -17,7 +22,6 @@ class CategoryController extends Controller
     
     public function boardIndex(Category $category)
     {
-        //return view('categories.blog')->with(['blogs' => $blog->categories->getByBlogCategory()]);
         return view('categories.board')->with(['boards' => $category->getByBoardCategory()]);
     }
 }

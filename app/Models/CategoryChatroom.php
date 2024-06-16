@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 
-class BlogCategory extends Model
+class CategoryChatroom extends Model
 {
     use HasFactory;
     

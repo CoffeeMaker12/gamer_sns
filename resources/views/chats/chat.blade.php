@@ -1,9 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Chat
+            CHAT
         </h2>
     </x-slot>
+    
+    @foreach ($chatroom->categories as $chatroomCategory)
+        <a href="/categories/chat/{{ $chatroomCategory->id }}">{{ $chatroomCategory->name }}</a>
+    @endforeach
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -16,7 +20,7 @@
                          (return false;の結果として、submitが中断され、ページリロードは行われない。）--}}
                     <form method="post" onsubmit="onsubmit_Form(); return false;">
                         メッセージ : <input type="text" id="input_message" autocomplete="off" />
-                        <input type="hidden" id="chat_id" name="chat_id" value="{{ $chat->id }}"> 
+                        <input type="hidden" id="chat_id" name="chat_id" value="{{ $chatroom->id }}"> 
                         <button type="submit" class="text-white bg-blue-700 px-5 py-2">送信</button>
                     </form>
                 
@@ -53,7 +57,7 @@
             
             {{-- POSTリクエスト送信処理とレスポンス取得処理 --}}
             axios
-                .post( '/chat', params )
+                .post( '/chats/{chatroom}', params )
                 .then( response => {
                     console.log(response);
                     console.log(chatId)

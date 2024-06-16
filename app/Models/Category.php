@@ -37,6 +37,11 @@ class Category extends Model
         return $this->belongsToMany(Chatroom::class, 'category_chatrooms', 'category_id', 'chatroom_id'); 
     }
     
+    public function getByChatCategory(int $limit_count = 5)
+    {
+         return $this->chatrooms()->with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
     public function getByBlogCategory(int $limit_count = 5)
     {
          return $this->blogs()->with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
