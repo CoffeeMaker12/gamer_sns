@@ -13,7 +13,6 @@ class UserChatroom extends Model
     ];
     
     use HasFactory;
-    use SoftDeletes;
     
     //「1対多」の関係なので単数系
     public function user()

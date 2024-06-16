@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ChatroomRequest;
 use App\Library\Chat;
 use App\Models\Chatroom;
+use App\Models\UserChatroom;
+use App\Models\Category;
 use App\Models\CategoryChatroom;
 use App\Models\Message;
 use App\Models\User;
@@ -22,7 +24,9 @@ class ChatroomController extends Controller
 	
 	public function show(Chatroom $chatroom)
 	{
-	    return view('chats.chat')->with(['chatroom' => $chatroom]);
+		$messages = Message::where('chatroom_id', $chatroom->id)->orderBy('updated_at', 'DESC')->get();;
+		
+	    return view('chats.chat')->with(['chatroom' => $chatroom, 'messages' => $messages]);
 	}
 	
 	public function create(Category $category)
@@ -41,7 +45,7 @@ class ChatroomController extends Controller
 	    return redirect('/chats/' . $chatroom->id);
 	}
 	
-	public function sendMessage(Message $message, Request $request,)
+	public function sendMessage(Message $message, Request $request, )
     {
         // auth()->user() : 現在認証しているユーザーを取得
         $user = auth()->user();
@@ -62,8 +66,19 @@ class ChatroomController extends Controller
         //データベースへの保存処理
         $message->user_id = $strUserId;
         $message->body = $strMessage;
-        $message->id = $request->input('chat_id');
+        $message->chatroom_id = $request->input('chat_id');
         $message->save();
+        
+        $userExist = UserChatroom::where(function($query) use ($strUserId) {
+            $query->where('user_id', $strUserId);
+        })->first();
+        
+        if (!$userExist) {
+        	$userExist = new UserChatroom();
+        	$userExist->user_id = $strUserId;
+        	$userExist->chatroom_id = $request->input('chat_id');
+        	$userExist->save();
+        }
 
         return response()->json(['message' => 'Message sent successfully']);
     }

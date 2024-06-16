@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function chatIndex(Category $category)
     {
-        return view('categories.chat')->with(['chats' => $category->getByChatCategory()]);
+        return view('categories.chat')->with(['chatrooms' => $category->getByChatCategory()]);
     }
     
     public function blogIndex(Category $category)

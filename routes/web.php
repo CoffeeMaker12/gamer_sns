@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatroomController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\BoardtypeController;
@@ -40,9 +40,10 @@ Route::controller(HomeController::class)->middleware(['auth'])->group(function()
 
 Route::controller(ChatroomController::class)->middleware(['auth'])->group(function(){
     Route::get('/chats', 'index')->name('chats');
+    Route::post('/chats', 'store')->name('store');
     Route::get('/chats/create', 'create')->name('create');
     Route::get('/chats/{chatroom}', 'show')->name('show');
-    Route::post('/chats', 'sendMessage')->name('sendMessage');
+    Route::post('/chats/{chatroom}', 'sendMessage')->name('sendMessage');
 });
 
 Route::controller(BlogController::class)->middleware(['auth'])->group(function(){
@@ -67,8 +68,11 @@ Route::controller(BoardController::class)->middleware(['auth'])->group(function(
 
 Route::get('/boards/type/{boardtype}', [BoardtypeController::class,'index'])->middleware("auth");
 
-Route::get('/categories/blog/{category}', [CategoryController::class,'blogIndex'])->middleware("auth");
-Route::get('/categories/board/{category}', [CategoryController::class,'boardIndex'])->middleware("auth");
+Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
+    Route::get('/categories/chat/{category}', 'chatIndex')->name("chatIndex");
+    Route::get('/categories/blog/{category}', 'blogIndex')->name("blogIndex");
+    Route::get('/categories/board/{category}', 'boardIndex')->name("boardIndex");
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
