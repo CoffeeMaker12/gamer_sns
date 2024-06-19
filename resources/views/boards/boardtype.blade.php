@@ -44,4 +44,7 @@
     <div class='authinfo'>
         {{ Auth::user()->name }}
     </div>
+    <div class="footer">
+        <a href="/boards">全体一覧に戻る</a>
+    </div>
 </x-app-layout>
