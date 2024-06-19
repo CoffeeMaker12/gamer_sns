@@ -16,7 +16,7 @@ class Category extends Model
     
     public function blogs() 
     { 
-        return $this->belongsToMany(Blog::class, 'blog_categories', 'category_id', 'blog_id'); 
+        return $this->belongsToMany(Blog::class, 'blog_categories', 'category_id', 'blog_id')->withTimestamps(); 
     }
     
     //「1対多」
@@ -29,12 +29,12 @@ class Category extends Model
     
     public function boards()
     {
-        return $this->belongsToMany(Board::class, 'board_categories', 'category_id', 'board_id');
+        return $this->belongsToMany(Board::class, 'board_categories', 'category_id', 'board_id')->withTimestamps();
     }
     
     public function chatrooms() 
     { 
-        return $this->belongsToMany(Chatroom::class, 'category_chatrooms', 'category_id', 'chatroom_id'); 
+        return $this->belongsToMany(Chatroom::class, 'category_chatrooms', 'category_id', 'chatroom_id')->withTimestamps(); 
     }
     
     public function getByChatCategory(int $limit_count = 5)

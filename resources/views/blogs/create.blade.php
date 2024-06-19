@@ -12,11 +12,16 @@
         </div>
         <div class="category">
             <h2>Blog Category</h2>
-            <select name="blog_category[category_id]">
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
+            @foreach ($categories as $category)
+                @if($blog->categories->contains('id', $category->id))
+                    <input type="checkbox" name="blog_category[]" value="{{ $category->id}}" checked>
+                @else
+                    <input type="checkbox" name="blog_category[]" value="{{ $category->id}}">
+                @endif 
+                    <label for="">
+                        {{ $category->name }}
+                    </label>
+            @endforeach
         </div>
         <div class="body">
             <h2>Body</h2>

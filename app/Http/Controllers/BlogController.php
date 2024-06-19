@@ -21,19 +21,17 @@ class BlogController extends Controller
 	    return view('blogs.show')->with(['blog' => $blog]);
 	}
 	
-	public function create(Category $category)
+	public function create(Category $category, Blog $blog)
 	{
-	    return view('blogs.create')->with(['categories' => $category->get()]);
+	    return view('blogs.create')->with(['categories' => $category->get(), 'blog' => $blog]);
 	}
 	
 	public function store(BlogRequest $request, Blog $blog, BlogCategory $blogCategory)
 	{
 	    $input = $request['blog'];
-	    $input2 = $request['blog_category'];
 	    $blog->user_id = \Auth::id();
 	    $blog->fill($input)->save();
-	    $blogCategory->blog_id = $blog->id;
-	    $blogCategory->fill($input2)->save();
+	    $blog->categories()->attach($request->blog_category);
 	    return redirect('/blogs/' . $blog->id);
 	}
 	

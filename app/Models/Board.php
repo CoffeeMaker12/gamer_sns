@@ -33,7 +33,7 @@ class Board extends Model
     //「多対多」
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'board_categories', 'board_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'board_categories', 'board_id', 'category_id')->withTimestamps();
     }
     
     //「1対多」

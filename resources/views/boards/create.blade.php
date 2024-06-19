@@ -6,7 +6,7 @@
     <form action="/boards" method="POST">
         @csrf
         <div class="boardtype">
-            <h2>Blog Category</h2>
+            <h2>Board Category</h2>
             <select name="board[boardtype_id]">
                 @foreach($boardtypes as $boardtype)
                     <option value="{{ $boardtype->id }}">{{ $boardtype->name }}</option>
@@ -19,12 +19,18 @@
             <p class="title__error" style="color:red">{{ $errors->first('board.title') }}</p>
         </div>
         <div class="category">
-            <h2>Blog Category</h2>
-            <select name="board_category[category_id]">
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
+            <h2>Board Category</h2>
+            
+            @foreach ($categories as $category)
+                @if($board->categories->contains('id', $category->id))
+                    <input type="checkbox" name="board_category[]" value="{{ $category->id}}" checked>
+                @else
+                    <input type="checkbox" name="board_category[]" value="{{ $category->id}}">
+                @endif 
+                    <label for="">
+                        {{ $category->name }}
+                    </label>
+            @endforeach
         </div>
         <div class="body">
             <h2>Body</h2>
