@@ -12,11 +12,17 @@
         </div>
         <div class="category">
             <h2>Chatroom Category</h2>
-            <select name="category_chatroom[category_id]">
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
+            
+            @foreach ($categories as $category)
+                @if($chatroom->categories->contains('id', $category->id))
+                    <input type="checkbox" name="chatroom_category[]" value="{{ $category->id}}" checked>
+                @else
+                    <input type="checkbox" name="chatroom_category[]" value="{{ $category->id}}">
+                @endif 
+                    <label for="">
+                        {{ $category->name }}
+                    </label>
+            @endforeach
         </div>
         <input type="submit" value="store"/>
     </form>

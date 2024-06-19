@@ -23,7 +23,7 @@ class Chatroom extends Model
     
     public function users() 
     { 
-        return $this->belongsToMany(User::class, 'user_chatrooms', 'chatroom_id', 'user_id'); 
+        return $this->belongsToMany(User::class, 'user_chatrooms', 'chatroom_id', 'user_id')->withTimestamps(); 
     }
     
     //「1対多」
@@ -34,7 +34,7 @@ class Chatroom extends Model
     
     public function categories() 
     { 
-        return $this->belongsToMany(Category::class, 'category_chatrooms', 'chatroom_id', 'category_id'); 
+        return $this->belongsToMany(Category::class, 'category_chatrooms', 'chatroom_id', 'category_id')->withTimestamps(); 
     }
     
     public function getPaginateByLimit(int $limit_count = 5)

@@ -22,19 +22,18 @@ class BoardController extends Controller
 	    return view('boards.show')->with(['board' => $board]);
 	}
 	
-	public function create(Category $category, Boardtype $boardtype)
+	public function create(Category $category, Boardtype $boardtype, Board $board)
 	{
-	    return view('boards.create')->with(['categories' => $category->get(), 'boardtypes' => $boardtype->get()]);
+	    return view('boards.create')->with(['categories' => $category->get(), 'boardtypes' => $boardtype->get(), 'board' => $board]);
 	}
 	
 	public function store(BoardRequest $request, Board $board, BoardCategory $boardCategory)
 	{
 	    $input = $request['board'];
-	    $input2 = $request['board_category'];
 	    $board->user_id = \Auth::id();
 	    $board->fill($input)->save();
 	    $boardCategory->board_id = $board->id;
-	    $boardCategory->fill($input2)->save();
+	    $board->categories()->attach($request->board_category);
 	    return redirect('/boards/' . $board->id);
 	}
 	

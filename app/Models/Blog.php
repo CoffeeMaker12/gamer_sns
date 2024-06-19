@@ -34,7 +34,7 @@ class Blog extends Model
     
     public function categories()
     { 
-        return $this->belongsToMany(Category::class, 'blog_categories', 'blog_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'blog_categories', 'blog_id', 'category_id')->withTimestamps();
     }
     
     //「1対多」

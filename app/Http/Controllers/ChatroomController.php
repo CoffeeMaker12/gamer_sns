@@ -29,19 +29,18 @@ class ChatroomController extends Controller
 	    return view('chats.chat')->with(['chatroom' => $chatroom, 'messages' => $messages]);
 	}
 	
-	public function create(Category $category)
+	public function create(Category $category, Chatroom $chatroom)
 	{
-	    return view('chats.create')->with(['categories' => $category->get()]);
+	    return view('chats.create')->with(['categories' => $category->get(), 'chatroom' => $chatroom]);
 	}
 	
 	public function store(ChatroomRequest $request, Chatroom $chatroom, CategoryChatroom $categoryChatroom)
 	{
 	    $input = $request['chatroom'];
-	    $input2 = $request['category_chatroom'];
 	    $chatroom->owner_id = \Auth::id();
 	    $chatroom->fill($input)->save();
 	    $categoryChatroom->chatroom_id = $chatroom->id;
-	    $categoryChatroom->fill($input2)->save();
+	    $chatroom->categories()->attach($request->chatroom_category);
 	    return redirect('/chats/' . $chatroom->id);
 	}
 	
