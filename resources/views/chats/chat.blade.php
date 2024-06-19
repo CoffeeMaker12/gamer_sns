@@ -94,4 +94,7 @@
             });
         });
     </script>
+    <div class="footer">
+        <a href="/chats">戻る</a>
+    </div>
 </x-app-layout>

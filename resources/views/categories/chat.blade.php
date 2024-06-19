@@ -18,6 +18,9 @@
             </div>
         @endforeach
     </div>
+    <div class="footer">
+        <a href="/chats">全体一覧に戻る</a>
+    </div>
     <div class='paginate'>
         {{ $chatrooms->links() }}
     </div>
