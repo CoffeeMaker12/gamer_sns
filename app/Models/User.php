@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'pr_body',
-        'icon_path'
+        'icon_path',
     ];
 
     /**
@@ -43,4 +43,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //「多対多」
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'user_categories', 'user_id', 'category_id')->withTimestamps();
+    }
 }

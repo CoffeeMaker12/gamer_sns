@@ -9,9 +9,9 @@ class Category extends Model
 {
     use HasFactory;
     
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'user_categories', 'category_id', 'user_id')->withTimestamps();
     }
     
     public function blogs() 
