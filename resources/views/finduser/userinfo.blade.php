@@ -8,7 +8,7 @@
     </h1>
     
     @foreach ($user->categories as $favoriteCategory)
-      <p>{{ $favoriteCategory->name }}</p>
+      {{ $favoriteCategory->name }}
     @endforeach
     <div class="body">
         <div class="pr_body">

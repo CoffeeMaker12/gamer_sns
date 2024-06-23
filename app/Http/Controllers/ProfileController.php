@@ -8,23 +8,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+use App\Models\Category;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(Request $request, Category $category, User $user): View
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            'categories' => $category->get(),
+            'currentUser' => $user,
         ]);
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request, User $user): RedirectResponse
     {
         $request->user()->fill($request->validated());
 
@@ -33,6 +37,10 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+        
+        //$user->categories()->detach();
+        $user->id = \Auth::id();
+        $user->categories()->sync($request->user_category);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

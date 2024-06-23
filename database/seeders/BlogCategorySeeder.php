@@ -29,5 +29,12 @@ class BlogCategorySeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
+         
+        DB::table('blog_categories')->insert([
+                'blog_id' => 2,
+                'category_id' => 1,
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);
     }
 }
