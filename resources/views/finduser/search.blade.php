@@ -14,7 +14,7 @@
             <td>{{$user->name}}</td><td>{{$user->pr_body}}</td>
             <td>
               @foreach ($user->categories as $userCategory)
-                {{ $userCategory->name }}
+                <a href="/categories/{{ $userCategory->id }}">{{ $userCategory->name }}</a>
               @endforeach
             </td>
           </tr>

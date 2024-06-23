@@ -9,6 +9,16 @@ use App\Models\BlogCategory;
 
 class CategoryController extends Controller
 {
+    public function index(Category $category)
+    {
+        return view('categories.index')->with(['categories' => $category->getPaginateByLimit()]);
+    }
+    
+    public function category(Category $category)
+    {
+        return view('categories.category')->with(['category' => $category]);
+    }
+    
     public function chatIndex(Category $category)
     {
         return view('categories.chat')->with(['chatrooms' => $category->getByChatCategory()]);

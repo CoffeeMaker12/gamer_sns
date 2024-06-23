@@ -18,9 +18,9 @@
                 @else
                     <input type="checkbox" name="blog_category[]" value="{{ $category->id}}">
                 @endif 
-                    <label for="">
-                        {{ $category->name }}
-                    </label>
+                <label for="">
+                    {{ $category->name }}
+                </label>
             @endforeach
         </div>
         <div class="body">

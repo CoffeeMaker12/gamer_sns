@@ -76,6 +76,8 @@ Route::controller(FindUserController::class)->middleware(['auth'])->group(functi
 });
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
+    Route::get('/categories', 'index')->name("index");
+    Route::get('/categories/{category}', 'category')->name("category");
     Route::get('/categories/chat/{category}', 'chatIndex')->name("chatIndex");
     Route::get('/categories/blog/{category}', 'blogIndex')->name("blogIndex");
     Route::get('/categories/board/{category}', 'boardIndex')->name("boardIndex");

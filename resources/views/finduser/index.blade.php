@@ -24,7 +24,12 @@
         <td>
             <a href="/finduser/{{ $user->id }}">{{ $user->name }}</a>
         </td>
-        <td>{{$user->pr_body}}</td><td>{{$user->favorite_category_id}}</td>
+        <td>{{$user->pr_body}}</td>
+        <td>
+          @foreach ($user->categories as $userCategory)
+            <a href="/categories/{{ $userCategory->id }}">{{ $userCategory->name }}</a>
+          @endforeach
+        </td>
       </tr>
     @endforeach
     </table>
