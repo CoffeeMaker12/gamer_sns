@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\BoardtypeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FindUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::controller(HomeController::class)->middleware(['auth'])->group(function()
     //Route::get('/chats', 'chats')->name('chats');
     //Route::get('/blogs', 'blogs')->name('blogs');
     //Route::get('/boards', 'boards')->name('boards');
-    Route::get('/finduser', 'finduser')->name('finduser');
+    //Route::get('/finduser', 'finduser')->name('finduser');
     Route::get('/mypage', 'mypage')->name('mypage');
 });
 
@@ -67,6 +68,12 @@ Route::controller(BoardController::class)->middleware(['auth'])->group(function(
 });
 
 Route::get('/boards/type/{boardtype}', [BoardtypeController::class,'index'])->middleware("auth");
+
+Route::controller(FindUserController::class)->middleware(['auth'])->group(function(){
+    Route::get('/finduser', 'index')->name("finduser");
+    Route::post('/finduser/search', 'search')->name('search');
+    Route::get('/finduser/{user}', 'userInfo')->name('userInfo');
+});
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
     Route::get('/categories/chat/{category}', 'chatIndex')->name("chatIndex");
