@@ -31,7 +31,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(HomeController::class)->middleware(['auth'])->group(function(){
-    Route::get('/', 'home')->name('home');
+    Route::get('/home', 'home')->name('home');
     //Route::get('/chats', 'chats')->name('chats');
     //Route::get('/blogs', 'blogs')->name('blogs');
     //Route::get('/boards', 'boards')->name('boards');

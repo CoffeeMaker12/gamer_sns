@@ -2,5 +2,5 @@
     <x-slot name="header">
         HOME
     </x-slot>
-    <h1>Home Test</h1>
+    <div class="bg-red-900">Home Test</div>
 </x-app-layout>
