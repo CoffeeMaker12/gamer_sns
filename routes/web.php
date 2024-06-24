@@ -36,7 +36,7 @@ Route::controller(HomeController::class)->middleware(['auth'])->group(function()
     //Route::get('/blogs', 'blogs')->name('blogs');
     //Route::get('/boards', 'boards')->name('boards');
     //Route::get('/finduser', 'finduser')->name('finduser');
-    Route::get('/mypage', 'mypage')->name('mypage');
+    //Route::get('/mypage', 'mypage')->name('mypage');
 });
 
 Route::controller(ChatroomController::class)->middleware(['auth'])->group(function(){
@@ -84,9 +84,9 @@ Route::controller(CategoryController::class)->middleware(['auth'])->group(functi
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/mypage', [ProfileController::class, 'edit'])->name('mypage');
+    Route::patch('/mypage', [ProfileController::class, 'update'])->name('mypage.update');
+    Route::delete('/mypage', [ProfileController::class, 'destroy'])->name('mypage.destroy');
 });
 
 require __DIR__.'/auth.php';

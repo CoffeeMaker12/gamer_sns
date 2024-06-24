@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request, Category $category, User $user): View
     {
-        return view('profile.edit', [
+        return view('mypage.edit', [
             'user' => $request->user(),
             'categories' => $category->get(),
             'currentUser' => $user,
@@ -42,7 +42,7 @@ class ProfileController extends Controller
         $user->id = \Auth::id();
         $user->categories()->sync($request->user_category);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('mypage')->with('status', 'profile-updated');
     }
 
     /**
