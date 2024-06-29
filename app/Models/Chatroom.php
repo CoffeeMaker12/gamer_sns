@@ -26,6 +26,11 @@ class Chatroom extends Model
         return $this->belongsToMany(User::class, 'user_chatrooms', 'chatroom_id', 'user_id')->withTimestamps(); 
     }
     
+    public function offers() 
+    { 
+        return $this->belongsToMany(User::class, 'chatoffers', 'chatroom_id', 'user_id')->withTimestamps(); 
+    }
+    
     //「1対多」
     public function messages()
     {

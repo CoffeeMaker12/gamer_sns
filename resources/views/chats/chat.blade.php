@@ -8,6 +8,18 @@
     @foreach ($chatroom->categories as $chatroomCategory)
         <a href="/categories/chat/{{ $chatroomCategory->id }}">{{ $chatroomCategory->name }}</a>
     @endforeach
+    
+    @if ($chatroom->owner_id == Auth::user()->id)
+        @foreach ($chatroom->offers as $offerUser)
+            @php
+                $user_id = $offerUser->id;
+            @endphp
+            <form action="/chats/{{ $chatroom->id }}/accept" method="POST">
+                @csrf
+                <button type="submit" name="user_id" value="{{ $user_id }}" class="bg.color=green">{{$user_id}} の申請を承認</button>
+            </form>
+        @endforeach
+    @endif
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
