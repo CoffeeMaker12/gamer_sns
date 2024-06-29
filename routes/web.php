@@ -44,6 +44,10 @@ Route::controller(ChatroomController::class)->middleware(['auth'])->group(functi
     Route::post('/chats', 'store')->name('store');
     Route::get('/chats/create', 'create')->name('create');
     Route::get('/chats/{chatroom}', 'show')->name('show');
+    Route::get('/chats/{chatroom}/offer', 'offer')->name('offer');
+    Route::post('/chats/{chatroom}/offer', 'storeOffer')->name('storeOffer');
+    Route::get('/chats/{chatroom}/accept', 'acceptSuccess')->name('acceptSuccess');
+    Route::post('/chats/{chatroom}/accept', 'acceptOffer')->name('acceptOffer');
     Route::post('/chats/{chatroom}', 'sendMessage')->name('sendMessage');
 });
 

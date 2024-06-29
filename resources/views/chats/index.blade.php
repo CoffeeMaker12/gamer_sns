@@ -8,9 +8,23 @@
     <div class='chatrooms'>
         @foreach ($chatrooms as $chatroom)
             <div class='chatroom'>
-                <h2 class='name'>
-                    <a href="/chats/{{ $chatroom->id }}">{{ $chatroom->name }}</a>
-                </h2>
+                <?php
+                    $exists = false;
+            	    foreach($chatroom->users as $chatroomUser){
+            	        if($chatroomUser->id == \Auth::id()){
+            	            $exists = true;
+            	        }
+            	    }
+                ?>
+                @if ($exists)
+                    <h2 class='joinedChatroom'>
+                        <a href="/chats/{{ $chatroom->id }}">{{ $chatroom->name }}を開く</a>
+                    </h2>
+                @else
+                    <h2 class='notJoined'>
+                        <a href="/chats/{{ $chatroom->id }}/offer">{{ $chatroom->name }}に参加を申請</a>
+                    </h2>
+                @endif
                 
                 @foreach ($chatroom->categories as $chatroomCategory)
                     <a href="/categories/chat/{{ $chatroomCategory->id }}">{{ $chatroomCategory->name }}</a>
