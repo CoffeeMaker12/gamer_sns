@@ -7,6 +7,8 @@
     
     <h1 class="font-semibold text-lg text-white bg-orange-900">カテゴリ一覧</h1>
     
+    <div class="py-2"></div>
+    
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class='categories'>
             @foreach ($categories as $category)
