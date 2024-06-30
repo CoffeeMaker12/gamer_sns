@@ -1,26 +1,42 @@
 <x-app-layout>
     <x-slot name="header">
-        BLOG
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            BLOG
+        </h2>
     </x-slot>
-    <h1>Blog Test</h1>
-    <h1 class="title">
-        {{ $blog->title }}
-    </h1>
-    @foreach ($blog->categories as $blogCategory)
-        <a href="/categories/blog/{{ $blogCategory->id }}">{{ $blogCategory->name }}</a>
-    @endforeach
-    <div class="content">
-        <div class="content__blog">
-            <h3>本文</h3>
-            <p>{{ $blog->body }}</p>    
+    
+    <h1 class="title font-semibold text-lg text-white bg-orange-900">{{ $blog->title }}</h1>
+    
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg space-y-6">
+                <div class="max-w-xl">
+                    @foreach ($blog->categories as $blogCategory)
+                        <a href="/categories/blog/{{ $blogCategory->id }}" class="hover:text-blue-500">
+                            {{ $blogCategory->name }}
+                        </a>
+                    @endforeach
+                    
+                    <div class="py-2"></div>
+                    
+                    <div class="content">
+                        <div class="content__blog">
+                            <h3 class="font-semibold">本文</h3>
+                            <p>{{ $blog->body }}</p>    
+                        </div>
+                    </div>
+                    @if (Auth::user()->id == $blog->user_id)
+                        <div class="py-2"></div>
+                        
+                        <div class="edit">
+                            <div class="edit"><a href="/blogs/{{ $blog->id }}/edit" class="hover:text-blue-500">編集</a></div>
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
-    @if (Auth::user()->id == $blog->user_id)
-        <div class="edit">
-            <div class="edit"><a href="/blogs/{{ $blog->id }}/edit">edit</a></div>
-        </div>
-    @endif
     <div class="footer">
-        <a href="/blogs">戻る</a>
+        <a href="/blogs" class="hover:text-blue-500">戻る</a>
     </div>
 </x-app-layout>
