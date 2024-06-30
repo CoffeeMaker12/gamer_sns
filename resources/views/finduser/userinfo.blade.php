@@ -1,6 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        FIND USER
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            FIND USER
+        </h2>
     </x-slot>
     <h1>User Info</h1>
     <h1 class="name">

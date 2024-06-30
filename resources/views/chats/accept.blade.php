@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
     
-    <h1>{{ $chatroom->name }}への参加申請を承認しました</h1>
+    <h1 class="font-semibold text-lg text-white bg-orange-900">{{ $chatroom->name }}への参加申請を承認しました</h1>
     <div class="footer">
-        <a href="/chats/{{ $chatroom->id }}">戻る</a>
+        <a href="/chats/{{ $chatroom->id }}" class="hover:text-blue-500">戻る</a>
     </div>
 </x-app-layout>
