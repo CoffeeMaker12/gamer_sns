@@ -27,9 +27,6 @@
                     <x-nav-link :href="route('finduser')" :active="request()->routeIs('finduser')">
                         {{ __('FIND USER') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                        {{ __('MY PAGE') }}
-                    </x-nav-link>
                 </div>
             </div>
 
