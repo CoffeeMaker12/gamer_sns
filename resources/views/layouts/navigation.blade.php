@@ -27,7 +27,7 @@
                     <x-nav-link :href="route('finduser')" :active="request()->routeIs('finduser')">
                         {{ __('FIND USER') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('mypage.edit')" :active="request()->routeIs('mypage.edit')">
+                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         {{ __('MY PAGE') }}
                     </x-nav-link>
                 </div>
@@ -49,7 +49,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('mypage.edit')">
+                        <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 

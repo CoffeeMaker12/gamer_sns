@@ -88,9 +88,9 @@ Route::controller(CategoryController::class)->middleware(['auth'])->group(functi
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/mypage', [ProfileController::class, 'edit'])->name('mypage.edit');
-    Route::patch('/mypage', [ProfileController::class, 'update'])->name('mypage.update');
-    Route::delete('/mypage', [ProfileController::class, 'destroy'])->name('mypage.destroy');
+    Route::get('/mypage', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/mypage', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/mypage', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
