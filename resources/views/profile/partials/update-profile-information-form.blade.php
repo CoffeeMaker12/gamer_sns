@@ -46,25 +46,6 @@
                 </div>
             @endif
         </div>
-        
-        <div>
-            <x-input-label for="pr_body" :value="__('Profile Body')" />
-            <x-text-input id="pr_body" name="pr_body" type="text" class="mt-1 block w-full" :value="old('pr_body', $user->pr_body)" required autofocus autocomplete="pr_body" />
-            <x-input-error class="mt-2" :messages="$errors->get('pr_body')" />
-        </div>
-        
-        <div>
-        @foreach ($categories as $category)
-            @if($currentUser->categories->contains('id', $category->id))
-                <input type="checkbox" name="user_category[]" value="{{ $category->id}}" checked>
-            @else
-                <input type="checkbox" name="user_category[]" value="{{ $category->id}}">
-            @endif 
-            <label for="">
-                {{ $category->name }}
-            </label>
-        @endforeach
-        </div>
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
