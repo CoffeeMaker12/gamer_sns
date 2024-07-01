@@ -1,12 +1,17 @@
 <x-app-layout>
+    <x-slot name="title">
+        CHAT
+    </x-slot>
+    
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             CHAT
         </h2>
     </x-slot>
     
+    <h1 class="font-semibold text-lg text-white bg-orange-900">{{ $chatroom->name }}</h1>
     @foreach ($chatroom->categories as $chatroomCategory)
-        <a href="/categories/chat/{{ $chatroomCategory->id }}">{{ $chatroomCategory->name }}</a>
+        <a href="/categories/chat/{{ $chatroomCategory->id }}" class="hover:text-blue-500">{{ $chatroomCategory->name }}</a>
     @endforeach
     
     @if ($chatroom->owner_id == Auth::user()->id)
@@ -16,7 +21,9 @@
             @endphp
             <form action="/chats/{{ $chatroom->id }}/accept" method="POST">
                 @csrf
-                <button type="submit" name="user_id" value="{{ $user_id }}" class="bg.color=green">{{$user_id}} の申請を承認</button>
+                <button type="submit" name="user_id" value="{{ $user_id }}" class="text-white bg-green-600 hover:bg-green-800">
+                    {{$user_id}} の申請を承認
+                </button>
             </form>
         @endforeach
     @endif
@@ -107,6 +114,6 @@
         });
     </script>
     <div class="footer">
-        <a href="/chats">戻る</a>
+        <a href="/chats" class="hover:text-blue-500">戻る</a>
     </div>
 </x-app-layout>
