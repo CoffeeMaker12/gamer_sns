@@ -56,6 +56,45 @@
             </div>
         </div>
     </div>
+    
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg space-y-6">
+                <div class="max-w-xl">
+                    @foreach ($board->board_comments as $comment)
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                ユーザー名：{{ $comment->user->name }}
+                            </div>
+                            <div class="card-body">
+                                本文：{{ $comment->body }}
+                            </div>
+                        </div>
+                    @endforeach
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+    
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg space-y-6">
+                <div class="max-w-xl">
+                    <form action="/boards/{{ $board->id }}" method="POST">
+                        @csrf
+                        <input type="hidden" name='board_id' value="{{$board->id}}">
+                        <div class="form-group">
+                            <textarea name="body" placeholder="コメント">{{ old('body') }}</textarea>
+                        </div>
+                        <div class="form-group mt-4">
+                        <button class="bg-blue-500 text-white hover:bg-blue-700">コメントする</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
     <div class="footer">
         <a href="/boards" class="hover:text-blue-500">戻る</a>
     </div>

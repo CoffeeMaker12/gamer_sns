@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class BoardComment extends Model
@@ -26,5 +27,11 @@ class BoardComment extends Model
     public function board()
     {
         return $this->belongsTo(Board::class);
+    }
+    
+    public function getPaginateByLimit(int $limit_count = 5)
+    {
+        // updated_atで降順に並べたあと、limitで件数制限をかける
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }

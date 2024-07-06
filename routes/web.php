@@ -6,6 +6,7 @@ use App\Http\Controllers\ChatroomController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogCommentController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\BoardCommentController;
 use App\Http\Controllers\BoardtypeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FindUserController;
@@ -74,6 +75,10 @@ Route::controller(BoardController::class)->middleware(['auth'])->group(function(
     Route::put('/boards/{board}', 'update')->name('update');
     Route::delete('/boards/{board}', 'delete')->name('delete');
     Route::get('/boards/{board}/edit', 'edit')->name('edit');
+});
+
+Route::controller(BoardCommentController::class)->middleware(['auth'])->group(function(){
+    Route::post('/boards/{board}', 'store')->name('board_comment.store');
 });
 
 Route::get('/boards/type/{boardtype}', [BoardtypeController::class,'index'])->middleware("auth");
