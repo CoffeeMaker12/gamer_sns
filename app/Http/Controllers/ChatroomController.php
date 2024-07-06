@@ -25,6 +25,12 @@ class ChatroomController extends Controller
 	
 	public function show(Chatroom $chatroom, ChatOffer $chatoffer)
 	{
+		$user = \Auth::id();
+		
+		if($chatroom->users->contains($user) == null){
+			return redirect('/chats/' . $chatroom->id . '/offer')->with('error', 'このルームへのアクセス権限がないため、所有者に申請してください');
+		}
+		
 		$messages = Message::where('chatroom_id', $chatroom->id)->orderBy('updated_at', 'DESC')->get();;
 	    return view('chats.chat')->with(['chatroom' => $chatroom, 'messages' => $messages, 'chatoffer' => $chatoffer]);
 	}
