@@ -14,7 +14,6 @@ class BlogComment extends Model
     ];
     
     use HasFactory;
-    use SoftDeletes;
     
     //「1対多」の関係なので単数系
     public function user()
@@ -26,5 +25,11 @@ class BlogComment extends Model
     public function blog()
     {
         return $this->belongsTo(Blog::class);
+    }
+    
+    public function getPaginateByLimit(int $limit_count = 5)
+    {
+        // updated_atで降順に並べたあと、limitで件数制限をかける
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }
