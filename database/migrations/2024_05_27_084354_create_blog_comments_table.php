@@ -20,6 +20,7 @@ return new class extends Migration
             $table->Integer('blog_comment_id')->nullable();
             $table->string('body');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
