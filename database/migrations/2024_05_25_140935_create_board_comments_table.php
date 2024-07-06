@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('board_id')->references('id')->on('boards')->onDelete('cascade');
-            $table->Integer('board_comment_id');
+            $table->Integer('board_comment_id')->nullable();
             $table->string('body');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
