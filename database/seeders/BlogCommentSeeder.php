@@ -19,7 +19,6 @@ class BlogCommentSeeder extends Seeder
         DB::table('blog_comments')->insert([
                 'user_id' => 1,
                 'blog_id' => 1,
-                'blog_comment_id' => 1,
                 'body' => '本文テスト',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
