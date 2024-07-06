@@ -22,16 +22,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('toppage');
     //return view('home');
-});
+})->name('toppage');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(HomeController::class)->middleware(['auth'])->group(function(){
-    Route::get('/', 'home')->name('home');
+    Route::get('/home', 'home')->name('home');
     //Route::get('/chats', 'chats')->name('chats');
     //Route::get('/blogs', 'blogs')->name('blogs');
     //Route::get('/boards', 'boards')->name('boards');
