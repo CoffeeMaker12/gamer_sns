@@ -1,4 +1,4 @@
-# Gamer Summit（リポジトリ名：gamer_sns）
+# Gamer Summit(仮)[リポジトリ名：gamer_sns]
 
 ## アプリ概要（Gamer Summitとは）
 
