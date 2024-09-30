@@ -29,6 +29,7 @@ class BlogController extends Controller
 	public function store(BlogRequest $request, Blog $blog, BlogCategory $blogCategory)
 	{
 	    $input = $request['blog'];
+	    $input2 = $request['blog_category'];
 	    $blog->user_id = \Auth::id();
 	    $blog->fill($input)->save();
 	    $blog->categories()->attach($request->blog_category);

@@ -11,7 +11,8 @@ class BlogComment extends Model
     protected $fillable = [
         'body',
         'user_id',
-        'blog_id'
+        'blog_id',
+        'blog_comment_id'
     ];
     
     use HasFactory;

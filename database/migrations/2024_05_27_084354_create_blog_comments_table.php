@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('blog_id')->references('id')->on('blogs')->onDelete('cascade');
-            $table->Integer('blog_comment_id')->nullable();
+            $table->unsignedBigInteger('blog_comment_id')->nullable();
             $table->string('body');
             $table->timestamps();
             $table->softDeletes();

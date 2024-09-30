@@ -65,6 +65,9 @@ Route::controller(BlogController::class)->middleware(['auth'])->group(function()
 
 Route::controller(BlogCommentController::class)->middleware(['auth'])->group(function(){
     Route::post('/blogs/{blog}', 'store')->name('blog_comment.store');
+    Route::get('/blogs/{blog}/{blogComment}', 'comment')->name('blog_comment.comment');
+    Route::get('/blogs/{blog}/{blogComment}/reply', 'reply')->name('blog_comment.reply');
+    Route::post('/blogs/{blog}/{blogComment}', 'upreply')->name('blog_comment.upreply');
 });
 
 Route::controller(BoardController::class)->middleware(['auth'])->group(function(){
