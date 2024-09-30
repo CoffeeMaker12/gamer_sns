@@ -24,7 +24,7 @@ class BlogComment extends Model
         return $this->belongsTo(User::class);
     }
     
-    //「1対多」の関係なので単数系
+    //「1対多」関係なので単数系
     public function blog()
     {
         return $this->belongsTo(Blog::class);
