@@ -46,14 +46,17 @@
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg space-y-6">
                 <div class="max-w-xl">
                     @foreach ($blog->blog_comments as $comment)
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                ユーザー名：{{ $comment->user->name }}
+                        @if ($comment->blog_comment_id == NULL)
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    ユーザー名：{{ $comment->user->name }}
+                                </div>
+                                <div class="card-body">
+                                    本文：{{ $comment->body }}
+                                </div>
+                                <a href="/blogs/{{ $blog->id }}/{{ $comment->id }}" class="hover:text-blue-500">詳細を見る</a>
                             </div>
-                            <div class="card-body">
-                                本文：{{ $comment->body }}
-                            </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div> 
             </div> 
