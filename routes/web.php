@@ -82,6 +82,9 @@ Route::controller(BoardController::class)->middleware(['auth'])->group(function(
 
 Route::controller(BoardCommentController::class)->middleware(['auth'])->group(function(){
     Route::post('/boards/{board}', 'store')->name('board_comment.store');
+    Route::get('/boards/{board}/{boardComment}', 'comment')->name('board_comment.comment');
+    Route::get('/boards/{board}/{boardComment}/reply', 'reply')->name('board_comment.reply');
+    Route::post('/boards/{board}/{boardComment}', 'upreply')->name('board_comment.upreply');
 });
 
 Route::get('/boards/type/{boardtype}', [BoardtypeController::class,'index'])->middleware("auth");
