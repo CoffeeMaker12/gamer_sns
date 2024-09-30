@@ -11,7 +11,8 @@ class BoardComment extends Model
     protected $fillable = [
         'body',
         'user_id',
-        'board_id'
+        'board_id',
+        'board_comment_id'
     ];
     
     use HasFactory;
